@@ -42,7 +42,7 @@
 </head>
 <body>
     <div style="margin-left: 20%; margin-right: 20%;">
-        <h1>kenobi</h1>
+        <h1>KENOBI</h1>
         <h2>NMAP</h2>
         <img src="image.png" alt="NMAP Scan">
 
@@ -91,7 +91,7 @@
             <code>/usr/bin/menu</code>
         </pre>
 
-        <p>Copiamos el shell <code>/bin/sh</code>, lo llamamos <code>curl</code>, le dimos los permisos correctos y luego pusimos su ubicación en nuestro path. Esto significa que cuando se ejecuta el binario <code>/usr/bin/menu</code>, está usando nuestra variable de entorno <code>PATH</code> para encontrar el binario "curl". ¡Que en realidad es una versión de <code>/bin/sh</code>, y como este archivo se ejecuta como root, ejecuta nuestro shell como root!</p>
+        <p>Copiamos la shell <code>/bin/sh</code>, lo llamamos <code>curl</code>, le dimos los permisos correctos y luego pusimos su ubicación en nuestro path. Esto significa que cuando se ejecuta el binario <code>/usr/bin/menu</code>, está usando nuestra variable de entorno <code>PATH</code> para encontrar el binario "curl". </p>
         <pre>
             <code>
                 kenobi@kenobi:/tmp$ echo /bin/sh > curl
