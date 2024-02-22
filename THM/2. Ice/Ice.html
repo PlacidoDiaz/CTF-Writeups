@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        h2 {
+            color: #0081ab;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1># Ice</h1>
+
+        <h2>NMAP</h2>
+        <div class="">
+            <img src="image.png" alt="NMAP Scan">
+            <img src="image-1.png" alt="NMAP Scan">
+        </div>
+        <p>Encontramos un <strong>Microsoft Remote Desktop (MSRDP)</strong> corriendo en el puerto 3389</p>
+        <p>Un <strong>Icecast streaming media server</strong> corriendo en el puerto 8000</p>
+
+        <h2>Icecast</h2>
+        <p>Buscamos vulnerabilidades para este servicio en <a href="https://www.cvedetails.com/cve/CVE-2004-1561/">CVEdetails</a></p>
+        <img src="image-2.png" alt="Icecast Vulnerability">
+
+        <h2>Metasploit</h2>
+        <p>Buscamos la vulnerabilidad en Metasploit</p>
+        <img src="image-3.png" alt="Metasploit Search Result">
+        <p>Cambiamos el RHOSTS y ejecutamos el exploit</p>
+        <img src="image-4.png" alt="Metasploit Exploit Execution">
+        <p>Podemos ver qué usuario lleva el proceso Icecast</p>
+        <img src="image-5.png" alt="Icecast Process User">
+        <p>Información del sistema</p>
+        <img src="image-6.png" alt="System Information">
+        <p>Hacemos un reconocimiento, probamos diferentes exploits</p>
+        <pre><code>run post/multi/recon/local_exploit_suggester</code></pre>
+        <img src="image-7.png" alt="Local Exploit Suggester Result">
+        <p>Ejecutamos uno de los exploits encontrados</p>
+        <img src="image-8.png" alt="Exploit Execution">
+        <p>Dentro de la nueva sesión veremos más privilegios</p>
+        <img src="image-9.png" alt="Enhanced Privileges">
+        
+        <h2>Migramos</h2>
+        <p>Buscamos procesos con <code>ps</code></p>
+        <img src="image-10.png" alt="Process List">
+        <p>Para interactuar con lsass necesitamos estar en un proceso que sea de la misma arquitectura que el servicio lsass (x64 en este caso) y un proceso que tenga los mismos permisos que lsass. El servicio de cola de impresión cumple perfectamente con nuestras necesidades</p>
+        <p>A menudo, cuando tomamos el control de un programa en ejecución, finalmente cargamos otra biblioteca compartida en el programa (un dll) que incluye nuestro código malicioso. A partir de esto, podemos generar un nuevo hilo que aloje nuestra shell.</p>
+        <img src="image-11.png" alt="Process Information">
+        <p>Ahora que tenemos permisos de administrador, ejecutamos una herramienta que dumpea las contraseñas</p>
+        <pre><code>load kiwi</code></pre>
+        <img src="image-12.png" alt="Kiwi Load">
+        <p>Podemos ver todas las opciones disponibles con <code>help</code></p>
+        <p>Obtenemos todas las credenciales</p>
+        <pre><code>creds_all</code></pre>
+        <img src="image-13.png" alt="Credentials">
+        <p>Usando <code>hashdump</code> obtendremos el hash de las contraseñas</p>
+        <p>Usando <code>screenshare</code> podremos ver la pantalla del usuario remoto en tiempo real</p>
+        <p>Usando <code>record_mic</code> podemos grabar el micrófono del sistema</p>
+        <p>Usando <code>timestomp</code> podemos modificar las fechas de los archivos del sistema</p>
+        <p>Mimikatz nos permite crear lo que se llama un <code>golden ticket</code>, lo que nos permite autenticar en cualquier lugar con facilidad.</p>
+        <p>Los ataques de golden ticket son una función dentro de Mimikatz que abusa de un componente para Kerberos (el sistema de autenticación en dominios de Windows), los ataques de golden ticket nos permiten mantener la persistencia y autenticar como cualquier usuario en el dominio.</p>
+        <img src="image-14.png" alt="Golden Ticket Attack">
+        <p>También podemos activar el escritorio remoto</p>
+        <pre><code>run post/windows/manage/enable_rdp</code></pre>
+    </div>
+</body>
+</html>
