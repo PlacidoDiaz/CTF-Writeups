@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        h2 {
+            color: #0081ab;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1># Library</h1>
+
+        <h2>Nmap</h2>
+        <img src="image.png" alt="Nmap Scan">
+        <p>Podemos ver el nombre de la persona que lo ha puesto el post <code>meliodas</code></p>
+        <img src="image-1.png" alt="Nmap Post">
+        <p>Entramos en el <code>robots.txt</code></p>
+        <img src="image-2.png" alt="robots.txt">
+
+        <h2>SSH</h2>
+        <p>Hacemos un ataque de fuerza bruta usando el usuario <code>mediolas</code> y la lista <code>rockyou</code></p>
+        <img src="image-3.png" alt="SSH Brute Force">
+        <p>Entramos en el usuario, aquí encontramos <code>user.txt</code></p>
+        <img src="image-4.png" alt="user.txt">
+
+        <h2>Escalada de privilegios</h2>
+        <p>Tenemos un archivo que se encarga de hacer un backup</p>
+        <img src="image-6.png" alt="Backup File">
+        <p>Vemos los permisos que tenemos</p>
+        <pre><code>sudo -l</code></pre>
+        <img src="image-5.png" alt="Sudo Permissions">
+        <p>Borramos el script de backup</p>
+        <pre><code>rm -f bak.py</code></pre>
+        <p>Creamos el archivo de nuevo</p>
+        <img src="image-6.png" alt="Recreating Backup File">
+        <p>Lo ejecutamos y tendremos acceso root</p>
+        <pre><code>sudo /usr/bin/python3 /home/meliodas/bak.py</code></pre>
+        <img src="image-7.png" alt="Root Access">
+        <p>Vamos a la ruta <code>/root</code> y aquí encontraremos <code>root.txt</code></p>
+        <img src="image-8.png" alt="root.txt">
+    </div>
+</body>
+</html>
