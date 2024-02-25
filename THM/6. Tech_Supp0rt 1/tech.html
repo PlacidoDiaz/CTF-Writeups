@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Support</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        h2 {
+            color: #0081ab;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1># Tech_Supp0rt</h1>
+
+        <h2>Nmap</h2>
+        <img src="image.png" alt="alt text">
+        <img src="image-1.png" alt="alt text">
+
+        <h2>Web</h2>
+        <img src="image-3.png" alt="alt text">
+
+        <h2>SMB</h2>
+        <pre><code>smbmap -H 10.10.103.138</code></pre>
+        <img src="image-2.png" alt="alt text">
+        <pre><code>smbmap -H 10.10.103.138 -r websvr</code></pre>
+        <img src="image-4.png" alt="alt text">
+        <p>Vemos el archivo descargado, creds <code>admin:7sKvntXdPEJaxazce9PXi24zaFrLiKWCk</code></p>
+        <img src="image-5.png" alt="alt text">
+
+        <h2>Fuerza bruta</h2>
+        <p>Desciframos la contraseñas usando <a href="https://gchq.github.io/CyberChef/">cyber-chef</a></p>
+        <img src="image-8.png" alt="alt text">
+        <p>La contraseña es <code>Scam2021</code></p>
+
+        <h2>Fuzzing</h2>
+        <img src="image-6.png" alt="alt text">
+        <p>En la página wordpress podemos encontrar el login</p>
+        <img src="image-7.png" alt="alt text">
+        <p>Hacemos fuzzing desde el directorio de <code>/subrion</code> y encontramos el login</p>
+        <img src="image-9.png" alt="alt text">
+        <p>Entramos usando las credenciales anteriores</p>
+        <img src="image-10.png" alt="alt text">
+        <p>Aquí dentro podríamos subir una revershell o, ya que tenemos la aplicación y su versión, podemos buscar un exploit</p>
+        <pre><code>searchsploit Subrion CMS</code></pre>
+        <img src="image-11.png" alt="alt text">
+        <p>Descargamos el script de python</p>
+        <pre><code>searchsploit -m php/webapps/49876.py</code></pre>
+        <img src="image-12.png" alt="alt text">
+        <p>Ejecutamos el exploit</p>
+        <pre><code>python3 49876.py -u http://10.10.103.138/subrion/panel/ -l admin -p Scam2021</code></pre>
+        <img src="image-13.png" alt="alt text">
+        <p>Vemos los usuarios</p>
+        <img src="image-17.png" alt="alt text">
+        <p>Listamos los archivos</p>
+        <img src="image-14.png" alt="alt text">
+        <p>Navegamos hasta la carpeta wordpress</p>
+        <img src="image-15.png" alt="alt text">
+        <p>Vemos el contenido de <code>wp-config.php</code></p>
+        <img src="image-16.png" alt="alt text">
+        <p>Usuario <code>scamsite</code></p>
+        <p>Contraseña <code>ImAScammerLOL!123!</code></p>
+
+        <h2>Escala de privilegios</h2>
+        <p>Entramos en SSH</p>
+        <img src="image-18.png" alt="alt text">
+        <p>Vemos los permisos</p>
+        <img src="image-19.png" alt="alt text">
+        <p>Buscamos el directorio en <a href="https://gtfobins.github.io/gtfobins/iconv/#sudo">gtfobins</a></p>
+        <img src="image-20.png" alt="alt text">
+    </div>
+</body>
+</html>
