@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthem Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        h2 {
+            color: #0081ab;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1># Anthem</h1>
+
+        <h2>Nmap</h2>
+        <div class="">
+            <img src="image.png" alt="NMAP Scan">
+        </div>
+
+        <h2>Web</h2>
+        <p><strong>robots.txt</strong></p>
+        <img src="image-1.png" alt="robots.txt">
+        <p><strong>Umbraco login</strong></p>
+        <img src="image-5.png" alt="Umbraco Login">
+        <p><strong>Dominio</strong></p>
+        <img src="image-4.png" alt="Domain Information">
+        <p><strong>Email</strong></p>
+        <img src="image-6.png" alt="Email Screenshot">
+
+        <h2>Flags</h2>
+        <img src="image-3.png" alt="Flag">
+        <img src="image-2.png" alt="Another Flag">
+        <img src="image-7.png" alt="Additional Flag">
+        <img src="image-8.png" alt="More Flags">
+
+        <h2>Pasos Finales</h2>
+        <img src="image-9.png" alt="Final Steps">
+        <p><strong>Acceso RDP</strong></p>
+        <pre><code>rdesktop -u SD 10.10.139.254</code></pre>
+        <p>Usamos la contraseña encontrada antes</p>
+        <img src="image-10.png" alt="Using Password">
+        <p>Contenido de <code>User.txt</code></p>
+        <img src="image-11.png" alt="User.txt Content">
+        <p>Miramos los archivos ocultos del sistema, encontramos la carpeta <code>backup</code></p>
+        <p>Le damos permisos a los usuarios del sistema al archivo</p>
+        <img src="image-12.png" alt="Setting Permissions">
+        <img src="image-13.png" alt="Permissions Set">
+        <p>Accedemos al usuario administrador y vemos el contenido de <code>root.txt</code></p>
+        <img src="image-14.png" alt="Root.txt Content">
+        <p>Para ganar acceso de otra manera podríamos ejecutar <code>windows-exploit-suggester.py</code> y ver los CVE críticos del sistema</p>
+    </div>
+</body>
+</html>
