@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1>NMAP</h1>
+        <img src="image.png" alt="Nmap Scan Result">
+
+        <h1>Postgres</h1>
+        <img src="image-1.png" alt="Postgres Initial Connection">
+        <img src="image-2.png" alt="Postgres Database Access">
+        <p>Para obtener la versión, introducimos el usuario y contraseña anterior:</p>
+        <img src="image-3.png" alt="Postgres Version Command">
+        <img src="image-4.png" alt="Postgres Version Result">
+        <p>Dumpeamos los hashes:</p>
+        <img src="image-5.png" alt="Postgres Dump Hash Command">
+        <img src="image-6.png" alt="Postgres Dump Hash Result">
+        <p>Módulo para leer archivos: <code>auxiliary/admin/postgres/postgres_readfile</code></p>
+        <p>Módulo que permite la ejecución de comandos arbitrarios: <code>exploit/multi/postgres/postgres_copy_from_program_cmd_exec</code></p>
+        <img src="image-7.png" alt="Postgres Read File Module">
+        <img src="image-8.png" alt="Postgres Command Execution Module">
+        <p>Leemos <code>credentials.txt</code>:</p>
+        <img src="image-9.png" alt="Reading Credentials File">
+
+        <h1>SSH</h1>
+        <img src="image-10.png" alt="SSH Access">
+        <p>Mejoramos la consola:</p>
+        <img src="image-11.png" alt="Improved Console">
+        <p>No podemos acceder a los ficheros de <code>alison</code>:</p>
+        <img src="image-12.png" alt="Access Denied to Alison's Files">
+        <p>Buscamos los ficheros que pertenecen a <code>alison</code>:</p>
+        <pre><code>find / -type f -user alison 2>/dev/null</code></pre>
+        <img src="image-13.png" alt="Files Owned by Alison">
+        <p>Revisamos <code>config.php</code>:</p>
+        <img src="image-14.png" alt="Config PHP Review">
+        <p>Contraseña encontrada: <strong>p4ssw0rdS3cur3!#</strong></p>
+
+        <h1>Flag User</h1>
+        <img src="image-15.png" alt="User Flag Found">
+
+        <h1>Escala de Privilegios</h1>
+        <img src="image-16.png" alt="Privilege Escalation">
+
+        <h1>Flag Root</h1>
+        <img src="image-17.png" alt="Root Flag Found">
+    </div>
+</body>
+</html>

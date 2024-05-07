@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brooklyn Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1>Nmap</h1>
+        <img src="image.png" alt="Nmap Scan Result">
+
+        <h1>FTP</h1>
+        <p>Descargamos el archivo:</p>
+        <img src="image-1.png" alt="FTP Download Initiation">
+        <img src="image-2.png" alt="FTP Download Completion">
+
+        <h1>Fuerza Bruta</h1>
+        <p>Usamos Hydra para realizar un ataque de fuerza bruta en SSH:</p>
+        <pre><code>hydra -l jake -P /usr/share/wordlists/rockyou.txt ssh://10.10.245.9</code></pre>
+        <img src="image-3.png" alt="Hydra Brute Force Attack">
+
+        <h1>SSH</h1>
+        <img src="image-4.png" alt="SSH Access">
+
+        <h1>User Flag</h1>
+        <img src="image-5.png" alt="User Flag Found">
+
+        <h1>Escalada de Privilegios</h1>
+        <img src="image-7.png" alt="Privilege Escalation Attempt">
+        <img src="image-6.png" alt="Privilege Escalation Success">
+
+        <h1>Root Flag</h1>
+        <img src="image-8.png" alt="Root Flag Found">
+    </div>
+</body>
+</html>

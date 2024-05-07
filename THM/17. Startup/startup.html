@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0047ab;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <h1>NMAP</h1>
+        <img src="image.png" alt="NMAP Scan Result">
+
+        <h1>FTP</h1>
+        <img src="image-1.png" alt="FTP Connection Setup">
+        <img src="image-2.png" alt="FTP File Listing">
+        <img src="image-3.png" alt="FTP File Interaction">
+
+        <h1>Web</h1>
+        <img src="image-4.png" alt="Web Interface Screenshot">
+
+        <h1>Fuzzing</h1>
+        <p>Using Gobuster to discover directories:</p>
+        <pre><code>gobuster dir -u http://10.10.100.166/ -w /usr/share/wordlists/dirb/common.txt</code></pre>
+        <img src="image-5.png" alt="Gobuster Initial Result">
+        <img src="image-6.png" alt="Gobuster Detailed Result">
+
+        <p>Uploading a shell via FTP:</p>
+        <img src="image-7.png" alt="Shell Upload via FTP">
+    </div>
+</body>
+</html>
