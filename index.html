@@ -4,159 +4,436 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CTF Writeups</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Para iconos -->
     <style>
+        /* Estilos generales */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #ecf0f1;
+            color: #333;
         }
 
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
+        /* Barra de navegación */
+        nav {
+            background-color: #34495e;
+            color: white;
+            padding: 15px 0;
             text-align: center;
         }
 
-        h1 {
-            margin-top: 0;
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 15px;
+            font-size: 1.1em;
         }
 
-        h2 {
-            margin-top: 30px;
+        nav a:hover {
+            background-color: #2c3e50;
+            border-radius: 5px;
+        }
+
+        /* Cabecera */
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        /* Filtro */
+        .filter-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .filter-container select,
+        .filter-container input {
+            padding: 10px;
+            font-size: 1em;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Sección de máquinas */
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 15px;
         }
 
         .machine {
-            margin-bottom: 10px;
             background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 10px;
+            border-radius: 8px;
+            padding: 20px;
             display: flex;
-            justify-content: space-between; /* Para alinear el enlace a la fuente y el nombre de la máquina */
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
         }
 
         .machine a {
             text-decoration: none;
-            color: #007bff;
+            color: #3498db;
+            font-size: 1.2em;
+            font-weight: bold;
         }
 
         .machine a:hover {
             text-decoration: underline;
         }
 
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            display: block;
-
+        .machine .tags {
+            font-size: 0.9em;
+            color: #7f8c8d;
         }
-        .container{
-            margin-left: 20%;
-            margin-right: 20%;
-            margin-bottom: 20%;
+
+        .machine .source {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        footer {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: white;
+            font-size: 1.5em;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            color: #3498db;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            nav a {
+                font-size: 1em;
+                padding: 8px 15px;
+                margin: 0 10px;
+            }
+
+            header h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        .machine-date {
+            color: #7f8c8d;  /* Gris sutil */
+            font-size: 0.9em; /* Un poco más pequeño */
+            font-style: italic; /* Opcional: le da un toque más profesional */
         }
     </style>
 </head>
 <body>
+    <!-- Barra de navegación -->
+    <nav>
+        <a href="#tryhackme">TryHackMe</a>
+        <a href="#htb">Hack The Box</a>
+    </nav>
+
+    <!-- Cabecera -->
     <header>
         <h1>CTF Writeups</h1>
+        <p>Recopilación de mis CTFs resueltos y sus respectivos writeups.</p>
     </header>
 
     <div class="container">
-        <h2>TryHackMe</h2>
-        <div class="machine">
-            <a href="THM/1. Blue/blue.html">Blue</a> <a href="https://tryhackme.com/room/blue">Fuente</a>
+        <!-- Filtro de búsqueda -->
+        <div class="filter-container">
+            <input type="text" id="search" placeholder="Buscar por título..." onkeyup="filterMachines()">
         </div>
 
-        <div class="machine">
-            <a href="THM/2. Ice/Ice.html">Ice</a> <a href="https://tryhackme.com/room/ice">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/3. Blaster/blaster.html">Blaster</a> <a href="https://tryhackme.com/room/blaster">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/4. Library/library.html">Library</a> <a href="https://tryhackme.com/room/bsidesgtlibrary">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/5. Retro/retro.html">Retro</a> <a href="https://tryhackme.com/room/retro">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/6. Tech_Supp0rt 1/tech.html">Tech_Supp0rt 1</a> <a href="https://tryhackme.com/room/techsupp0rt1">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/7. Relevant/relevant.html">Relevant</a> <a href="https://tryhackme.com/room/relevant">Fuente</a>
-        </div>
+        <!-- Sección TryHackMe -->
+        <section id="tryhackme" class="section">
+            <h2>TryHackMe</h2>
         
-        <div class="machine">
-            <a href="THM/8. Anthem/anthem.html">Anthem</a> <a href="https://tryhackme.com/room/anthem">Fuente</a>
-        </div>
+            <div class="machine" data-tags="pwn, web" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/1. Blue/blue.html" class="machine-title">Blue</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/blue" target="_blank">Fuente</a>
+                </div>
+            </div>
+        
+            <div class="machine" data-tags="crypto, web" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/2. Ice/Ice.html" class="machine-title">Ice</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/ice" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="pwn, crypto" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/3. Blaster/blaster.html" class="machine-title">Blaster</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/blaster" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="forensics" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/4. Library/library.html" class="machine-title">Library</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/bsidesgtlibrary" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="pwn, web" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/5. Retro/retro.html" class="machine-title">Retro</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/retro" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="pwn" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/6. Tech_Supp0rt 1/tech.html" class="machine-title">Tech_Supp0rt 1</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/techsupp0rt1" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="web" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/7. Relevant/relevant.html" class="machine-title">Relevant</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/relevant" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="web" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/8. Anthem/anthem.html" class="machine-title">Anthem</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/anthem" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="pwn" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/9. Basic Pentesting/BP.html" class="machine-title">Basic Pentesting</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/basicpentestingjt" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="web" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/10. Kenobi/kenobi.html" class="machine-title">Kenobi</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/kenobi" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="crypto" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/11. Easy Peasy/easyPeasy.html" class="machine-title">EasyPeasy</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/easypeasyctf" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="pwn" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/12. Agent Sudo/agentsudo.html" class="machine-title">Agent Sudo</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="https://tryhackme.com/room/agentsudoctf" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="forensics" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/13. RootMe/rootme.html" class="machine-title">RootMe</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="web" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/14. Brooklyn Nine Nine/bnn.html" class="machine-title">Brooklyn Nine Nine</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="pwn" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/15. Bounty Hacker/bountyHacker.html" class="machine-title">Bounty Hacker</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="web" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/16. Poster/poster.html" class="machine-title">Poster</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="pwn" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/17. Startup/image.png" class="machine-title">Startup</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="web" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/18. GamingServer/GamingServer.html" class="machine-title">GamingServer</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="forensics" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/19. Library/library.html" class="machine-title">Library</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+            <div class="machine" data-tags="pwn" data-date="2024">
+                <div class="machine-info">
+                    <a href="THM/20. LazyAdmin/LazyAdmin.html" class="machine-title">LazyAdmin</a>
+                    <span class="machine-date">| 2024</span>
+                </div>
+                <div class="machine-source">
+                    <a href="" target="_blank">Fuente</a>
+                </div>
+            </div>
+            
+        
+        </section>
+        
 
-        <div class="machine">
-            <a href="THM/9. Basic Pentesting/BP.html">Basic Pentesting</a> <a href="https://tryhackme.com/room/basicpentestingjt">Fuente</a>
-        </div>
-        <div class="machine">
-            <a href="THM/10. Kenobi/kenobi.html">Kenobi</a> <a href="https://tryhackme.com/room/kenobi">Fuente</a>
-        </div>
+        <!-- Sección HTB -->
+        <section id="htb" class="section">
+            <h2>HTB</h2>
 
-        <div class="machine">
-            <a href="THM/11. Easy Peasy/easyPeasy.html">EasyPeasy</a> <a href="https://tryhackme.com/room/easypeasyctf">Fuente</a>
-        </div>
+            <div class="machine" data-tags="web" data-date="2024">
+                <a href="HTB/1. Crafty/writeup.md">Crafty</a> 
+                
+                <span class="source"><a href="https://vulnyx.com/#play">Fuente</a></span>
+            </div>
 
-        <div class="machine">
-            <a href="THM/12. Agent Sudo/agentsudo.html">Agent Sudo</a> <a href="https://tryhackme.com/room/agentsudoctf">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/13. RootMe/rootme.html">RootMe</a> <a href="">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/14. Brooklyn Nine Nine/bnn.html">Brooklyn Nine Nine</a> <a href="">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/15. Bounty Hacker/bountyHacker.html">Bounty Hacker</a> <a href="">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/16. Poster/poster.html">Poster</a> <a href="">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/17. Startup/image.png">Startup</a> <a href="">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/18. GamingServer/GamingServer.html">GamingServer</a> <a href="">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/19. Library/library.html">Library</a> <a href="">Fuente</a>
-        </div>
-
-        <div class="machine">
-            <a href="THM/20. LazyAdmin/LazyAdmin.html">LazyAdmin</a> <a href="">Fuente</a>
-        </div>
-
-        <h2>Vulnyx</h2>
-        <div class="machine">
-            <a href="">Play</a> <a href="https://vulnyx.com/#play">Fuente</a>
-        </div>
+        </section>
     </div>
 
+    <!-- Pie de página -->
     <footer>
-        <p>Plácido Díaz</p>
+        <p>&copy; 2025 Plácido Díaz</p>
+        <div class="social-links">
+            <a href="https://github.com/PlacidoDiaz" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="40px" height="40px" /></a>
+              &nbsp;
+              <a href="https://linkedin.com/in/PlacidoDiaz" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="40px" height="40px" /></a>
+              &nbsp;
+              <a href="https://medium.com/@placidoo" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/medium.svg" alt="Medium" width="40px" height="40px" /></a>
+        </div>
     </footer>
+
+    <script>
+        function filterMachines() {
+            const search = document.getElementById('search').value.toLowerCase();
+
+            const machines = document.querySelectorAll('.machine');
+
+            machines.forEach(machine => {
+                const title = machine.querySelector('a').textContent.toLowerCase();
+
+                const matchesSearch = title.includes(search);
+
+                if (matchesSearch) {
+                    machine.style.display = 'flex';
+                } else {
+                    machine.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>
